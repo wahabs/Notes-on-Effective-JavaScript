@@ -10,7 +10,7 @@ Released under the [MIT License.][license] Issues/pull requests welcome.
 ## Chapter 1 - Accustoming Yourself to JavaScript
 
 ### Item 2: Understand JavaScript's Floating Point Numbers
-All numbers in JS are doubles, classified as `number`. Integers are also classified under this type. Be aware of limitations in floating-point arithmetic.
+All numbers in JavaScript are doubles, classified as `number`. Integers are also classified under this type. Be aware of limitations in floating-point arithmetic.
 
 ### Item 3: Beware of Implicit Coercions
 A lot of the time, JavaScript doesn't raise errors when it should (a good reason to `"use strict";`). This can occur when doing operations that don't make sense, such as `'2' + 3`. Make sure you know the data types you're dealing with and not falling into an implicit coercion.
@@ -28,7 +28,7 @@ JavaScript's primitives are:
 
 Technically you can use an object wrapper to define a primitive, e.g. `var s = new String("hello")`. The variable `s` is now a `typeOf` object, *not* a string in the primitive sense. This can cause unexpected behavior, such as the normal comparison `===` to an equivalent string would yield `false` because they are different objects. For this reason, you should prefer primitives to object wrappers.
 
-The reason object wrappers exist then is for their implicit coercion. You can call predefined methods on primitives as if they were objects, e.g. `"hello".toUpperCase();`. JS will create an implicit wrapping, creating `new String("hello")` and then calling the `toUpperCase` method on it.
+The reason object wrappers exist then is for their implicit coercion. You can call predefined methods on primitives as if they were objects, e.g. `"hello".toUpperCase();`. JavaScipt will create an implicit wrapping, creating `new String("hello")` and then calling the `toUpperCase` method on it.
 
 ### Item 5: Avoid using `==` with mixed types
 The `==` comparison operator is less strict and will try to coerce types when comparing, so stick to `===`.
@@ -39,7 +39,7 @@ Ignore the book and just use semicolons explicitly.
 ### Item 7: Think of Strings as Sequences of 16-Bit Code Units
 In Unicode, every unit of text of all the world’s writing systems is assigned a unique integer between 0 and 1,114,111, known as a *code point* in Unicode terminology. In this sense it is similar to ASCII. The difference, however, is that while ASCII maps each index to a unique binary representation, Unicode allows multiple different binary encodings of code points. These encodings make trade offs between storage/performance, and there a several standard encodings of Unicode. The most popular are UTF-8, UTF-16, UTF-32.
 
-As far as their properties and methods are concerned, JS strings behave like sequences of UTF-16 code units. This will cause problems for applications working with the full range of Unicode (i.e. dealing with special characters). They can’t rely on string methods, length values, indexed lookups, or many regular expression patterns. If you are working outside the BMP, it’s a good idea to look for help from code point-aware libraries. It can be tricky to get the details of encoding and decoding right, so it’s advisable to use an existing library rather than implement the logic yourself.
+As far as their properties and methods are concerned, JavaScript strings behave like sequences of UTF-16 code units. This will cause problems for applications working with the full range of Unicode (i.e. dealing with special characters). They can’t rely on string methods, length values, indexed lookups, or many regular expression patterns. If you are working outside the BMP, it’s a good idea to look for help from code point-aware libraries. It can be tricky to get the details of encoding and decoding right, so it’s advisable to use an existing library rather than implement the logic yourself.
 
 
 ## Chapter 2 - Variable Scope
