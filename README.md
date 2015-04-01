@@ -1,7 +1,7 @@
 # Notes on *Effective JavaScript* by David Herman
 
-Intended to be a supplement to anyone's studying of JavaScript, whether through
-[Herman's book](http://www.amazon.com/Effective-JavaScript-Specific-Software-Development/dp/0321812182) or elsewhere. Does not attempt to be neutral or objective on matters of best practice.
+A study guide intended to supplement anyone's studying of JavaScript, whether through
+[Herman's book](http://www.amazon.com/Effective-JavaScript-Specific-Software-Development/dp/0321812182) or some other source. Does not attempt to be neutral or objective on matters of best practice.
 
 Released under the [MIT License.][license] Issues/pull requests welcome.
 
@@ -438,9 +438,9 @@ In many languages, every object is an instance of an associated class, which pro
 In JavaScript, what might be referred to as a "class" is more accurately the combination of a constructor function (e.g. `User`) and a prototype object used to share methods among instances of the constructor function (e.g. `User.prototype`). Consider the following:
 
 ```js
-function User(name, passwordHash) {
+function User(name, password) {
 	this.name = name;
-	this.passwordHash = passwordHash;
+	this.passwordHash = hash(password);
 }
 
 User.prototype.toString = function() {
@@ -451,7 +451,7 @@ User.prototype.checkPassword = function(password) {
 	return hash(password) === this.passwordHash;
 }
 
-var u = User.new("Ed", hash("correcthorsebatterystaple"))
+var u = new User("Ed", "correcthorsebatterystaple");
 ```
 
 The `User` function comes with a default `prototype` property, containing an object that starts out more or less empty. In this example, we add two methods to the `User.prototype` object: `toString` and `checkPassword`. When we create an instance of `User` with the `new` operator, the resultant object `u` gets the object stored at `User.prototype` automatically assigned as *its* prototype object (and can therefore access the aforementioned methods). And so we have the following definitions:
@@ -504,6 +504,8 @@ function User(name, passwordHash) {
 		return hash(password) === passwordHash;
 	};
 }
+
+var u = new User("Ed", hash("correcthorsebatterystaple"))
 ```
 
 This implementation of `User` has no instance `name` or `passwordHash` to access directly, and the only way to access the arguments to the constructor are through the methods that enclose them. The obvious downside is that we are not defining the methods on the prototype, so that multiple user instances will reproduce the same `toString` and `checkPassword` properties. Nevertheless, in situations where guaranteed information hiding is critical, it may be worth the additional cost.
@@ -570,6 +572,34 @@ Bird.prototype = Object.create(Animal.prototype);
 
 ### Item 39: Never reuse superclass property names
 
-Any instance variable/property is stored on instance objects and named with a string. Because property lookup is done via traversing the prototype chain, two classes in an inheritance hierarchy sharing a property *name* will in fact share the same property. As a result, subclasses must always be aware of name-clashing with all properties used by their superclasses, even if those properties are conceptually private. Note that we can still have a subclass override a *method* of its superclass by simply redefining the method on the subclass's prototype.
+Any instance variable/property is stored on an instance object and named with a string. Because property lookup is done via traversing the prototype chain, two classes in an inheritance hierarchy sharing a property *name* will in fact share the same property. As a result, subclasses must always be aware of name-clashing with all properties used by their superclasses, even if those properties are conceptually private. Note that we can still have a subclass override a *method* of its superclass by simply redefining the method on the subclass's prototype.
 
-### Item 40:
+### Item 40: Avoid inheriting from standard classes
+
+Standard classes such as `Array`, `Boolean`, `Date`, `Function`, `Number`, `RegExp`, or `String` have enough special properties (such as the internal property `[[Class]]`) that well-behaved subclasses are virtually impossible to write. An easy alternative is to simply give your class an instance property that is one of the standard classes, and have specific methods delegate their functionality to the property.
+
+### Item 41: Treat prototypes as an implementation detail
+
+An object can be imagined as an interface with the prototype being an implementation detail of how the object would behave. While the implementation can be inspected (e.g. via `getPrototypeOf`), relying on such features (even without modifying the details) can be an antipattern over the course of development. If for example the producer of an object changes its implementation details, the consumer that depends on them will break. These kinds of bugs can be especially difficult to diagnose because they constitute action at a distance: one author changes the implementation of one component, and another component (often written by a different programmer) breaks. A good programmer knows when to respect abstraction boundaries.
+
+### Item 42: Avoid reckless monkey-patching
+
+Just avoid monkey-patching entirely. The one exception may be when you need to implement a *polyfill.* That is, a piece of code or plugin that provides the technology that you expect the browser to provide natively (such as the `getPrototypeOf` example in Item 31). However, make sure to avoid overwriting existing methods and to document any monkey-patching performed by a library.
+
+## Chapter 5: Arrays and Dictionaries
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!--  -->
