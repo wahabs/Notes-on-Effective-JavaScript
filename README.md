@@ -1,5 +1,12 @@
 # Notes on *Effective JavaScript* by David Herman
 
+Intended to be a supplement to anyone's studying of JavaScript, whether through
+[Herman's book](http://www.amazon.com/Effective-JavaScript-Specific-Software-Development/dp/0321812182) or elsewhere. Does not attempt to be neutral or objective on matters of best practice.
+
+Released under the [MIT License.][license]. Issues/pull requests welcome.
+
+[license]: ./LICENSE.md
+
 ### Chapter 1 - Accustoming Yourself to JavaScript
 
 #### Item 2: Understand JavaScript's Floating Point Numbers
@@ -12,6 +19,7 @@ Make sure to always use `typeof` or comparison to `undefined` rather than truthi
 
 #### Item 4: Prefer Primitives to Object Wrappers
 JavaScript's primitives are:
+
 1. Booleans
 2. Numbers
 3. Strings
