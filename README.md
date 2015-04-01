@@ -549,7 +549,7 @@ CSVReader.prototype.read2 = function(str) {
 };
 
 var reader = new CSVReader();
-reader.read("a,b,c\nd,e,f\n"); => // [["a","b","c"], ["d","e","f"]]
+reader.read("a,b,c\nd,e,f\n"); // => [["a","b","c"], ["d","e","f"]]
 ```
 
 ### Item 38: `call` superclass constructors from subclass constructors
@@ -580,7 +580,7 @@ Standard classes such as `Array`, `Boolean`, `Date`, `Function`, `Number`, `RegE
 
 ### Item 41: Treat prototypes as an implementation detail
 
-An object can be imagined as an interface with the prototype being an implementation detail of how the object would behave. While the implementation can be inspected (e.g. via `getPrototypeOf`), relying on such features (even without modifying the details) can be an antipattern over the course of development. If for example the producer of an object changes its implementation details, the consumer that depends on them will break. These kinds of bugs can be especially difficult to diagnose because they constitute action at a distance: one author changes the implementation of one component, and another component (often written by a different programmer) breaks. A good programmer knows when to respect abstraction boundaries.
+An object can be imagined as an interface, with the prototype being an implementation detail of how the object would behave. While the implementation can be inspected (e.g. via `getPrototypeOf`), relying on such features (even without modifying the details) can be an antipattern over the course of development. If the producer of an object changes its implementation details, the consumer that depends on them will break. These kinds of bugs can be especially difficult to diagnose because they constitute action at a distance: one author changes the implementation of one component, and another component (often written by a different programmer) breaks. A good programmer knows when to respect abstraction boundaries.
 
 ### Item 42: Avoid reckless monkey-patching
 
@@ -588,6 +588,26 @@ Just avoid monkey-patching entirely. The one exception may be when you need to i
 
 ## Chapter 5: Arrays and Dictionaries
 
+### Item 43: Build lightweight dictionaries from direct instances of `Object`
+
+Since JavaScript objects are simply mappings of string keys to values, they can serve as lightweight dictionaries, e.g.
+
+```js
+var dict = { one: 1, two: 2 };
+dict['three'] = 3;
+console.log(dict.one) // 1
+console.log(dict['two']) // 2
+```
+
+### Item 44: Use `null` prototypes to avoid prototype pollution
+
+In case we want to prevent changes to an object's prototype, we can set the prototype to be `null`. The `Object.create` function is capable of dynamically constructing objects with a user-specified prototype link and a property descriptor map, which describes the values and attributes of the new object’s properties. By simply passing a `null` prototype argument and an empty descriptor map, we can build a truly empty object:
+```js
+var x = Object.create(null);
+Object.getPrototypeOf(x) === null; // true
+```
+
+### Item 45: Use `hasOwnProperty` to protect against prototype pollution
 
 
 
