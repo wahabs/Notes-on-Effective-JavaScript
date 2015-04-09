@@ -55,7 +55,7 @@ Meaning, declare them as local with `var`.
 ### Item 10: Avoid `with`
 Basically, `with` is a method intended to act as a shorthand for chaining a sequence of methods together on a specific object. JavaScript treats all variables the same: It looks them up in scope, starting with the innermost scope and working its way outward. If the property is not found in the object, then the search continues in outer scopes  (i.e. traversing the *lexical environment*).  The `with` statement treats an object as if it represented a variable scope, so inside the `with` block, variable lookup starts by searching for a property of the given variable name and traversing upwards until a variable definition is found.
 
-The problem is that `with` intends to bring multiple variables and methods together, and so there can easily be a conflict in the namespace (especially if we're passing in module such as `Math` to the `with` block). Every reference to an outer variable in a `with` block implicitly assumes that there is no property of the same name in the `with` object—*or in any of its prototype objects.* And so the `with` block is sensitive to any clashes between the variable scope and the object namespace, and is therefore best avoided.
+The problem is that `with` intends to bring multiple variables and methods together, and so there can easily be a conflict in the namespace (especially if we're passing in a module such as `Math` to the `with` block). Every reference to an outer variable in a `with` block implicitly assumes that there is no property of the same name in the `with` object—*or in any of its prototype objects.* And so the `with` block is sensitive to any clashes between the variable scope and the object namespace, and is therefore best avoided.
 
 ### Item 11: Get comfortable with closures
 
@@ -169,8 +169,8 @@ function wrapElements(a) {
 	var result = [];
 	for (var i = 0, n = a.length; i < n; i++) {
 		(function() {
-		var j = i;
-		result[i] = function() { return a[j]; };
+			var j = i;
+			result[i] = function() { return a[j]; };
 		})();
 	}
 	return result;
@@ -230,7 +230,7 @@ function Person(name, age) {
 }
 
 Person.prototype.greet = function() {
-	return "Hello I'm " + this.name + "and I'm " + this.age
+	return "Hello I'm " + this.name + "and I'm " + this.age;
 }
 
 var p = new Person("Ed", 22);
@@ -312,7 +312,7 @@ Table.prototype.forEach = function(receiver, callback) {
 }
 ```
 
-This allows consumers of the object to use a method as the callback function `callback` of `table.forEach` and provide a sensible receiver for the method. For example, we can conveniently copy the contents of one table into another, e.g. `table1.forEach(table2, Table.prototype.addEntry)`.
+This allows consumers of the object to use a method as the callback function of `forEach` and provide a sensible receiver for the method. For example, we can conveniently copy the contents of one table into another, e.g. `table1.forEach(table2, Table.prototype.addEntry)`.
 
 ### Item 21: Use `apply` to call functions with different numbers of arguments
 
