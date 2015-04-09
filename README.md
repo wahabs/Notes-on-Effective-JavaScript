@@ -608,18 +608,34 @@ Object.getPrototypeOf(x) === null; // true
 ```
 
 ### Item 45: Use `hasOwnProperty` to protect against prototype pollution
+### Item 46: Prefer Arrays to Dictionaries for Ordered Collections
+### Item 47: Never Add Enumerable Properties to `Object.prototype`
+### Item 48: Avoid Modifying an Object during Enumeration
+### Item 49: Prefer `for` Loops to `for...in` Loops for Array Iteration
+### Item 50: Prefer Iteration Methods to Loops
+### Item 51: Reuse Generic Array Methods on Array-Like Objects
+### Item 52: Prefer Array Literals to the Array Constructor
 
 
+## Chapter 6: Library and API Design
+
+### Item 53: Maintain Consistent Conventions
+### Item 54: Treat `undefined` As “No Value”
+### Item 55: Accept Options Objects for Keyword Arguments
+### Item 56: Avoid Unnecessary State
+### Item 57: Use Structural Typing for Flexible Interfaces
+### Item 58: Distinguish between Array and Array-Like
+### Item 59: Avoid Excessive Coercion
+### Item 60: Support Method Chaining
 
 
+## Chapter 7: Concurrency
 
-
-
-
-
-
-
-
-
-
-<!--  -->
+### Item 61: Don’t Block the Event Queue on I/O
+### Item 62: Use Nested or Named Callbacks for Asynchronous Sequencing
+### Item 63: Be Aware of Dropped Errors
+### Item 64: Use Recursion for Asynchronous Loops
+### Item 65: Don’t Block the Event Queue on Computation
+### Item 66: Use a Counter to Perform Concurrent Operations
+### Item 67: Never Call Asynchronous Callbacks Synchronously
+### Item 68: Use Promises for Cleaner Asynchronous Logic
