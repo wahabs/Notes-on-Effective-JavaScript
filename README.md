@@ -1,9 +1,7 @@
 # Notes on *Effective JavaScript* by David Herman
 
 A study guide intended to supplement anyone's studying of JavaScript, whether through
-[Herman's book](http://www.amazon.com/Effective-JavaScript-Specific-Software-Development/dp/0321812182) or some other source. Does not attempt to be neutral or objective on matters of best practice.
-
-Released under the [MIT License.][license] Issues/pull requests welcome.
+[Herman's book](http://www.amazon.com/Effective-JavaScript-Specific-Software-Development/dp/0321812182) or some other source. Does not attempt to be neutral or objective on matters of best practice. Issues and/or pull requests welcome.
 
 [license]: ./LICENSE.md
 
